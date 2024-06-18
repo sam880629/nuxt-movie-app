@@ -28,6 +28,7 @@ onMounted(async () => {
   try {
     console.log("getPopularMovies call~~~");
     movies.value = await getPopularMovies("day");
+    console.log("getPopularMovies called");
   } catch (error) {
     console.error("Error fetching popular movies on mount:", error);
   }
