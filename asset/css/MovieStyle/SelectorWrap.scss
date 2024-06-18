@@ -1,0 +1,6 @@
+.select_btn {
+    @apply flex-1 box-border font-bold rounded-xl text-white text-center m-[3px] w-[72px] h-[28px] cursor-pointer  p-[2px];
+  }
+  .select {
+    @apply border-2 bg-cyan-950 p-0;
+  }

@@ -1,0 +1,54 @@
+/* loading 動畫ST */
+$color: #fff;
+$size: 32px;
+$border-width: 2px;
+
+@keyframes ball-clip-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.la-ball-clip-rotate {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  font-size: 0;
+  color: $color;
+  width: $size;
+  height: $size;
+
+  & > div {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    float: none;
+    background-color: currentColor;
+    border: 0 solid currentColor;
+    width: $size;
+    height: $size;
+    background: transparent;
+    border-width: $border-width;
+    border-bottom-color: transparent;
+    border-radius: 100%;
+    animation: ball-clip-rotate 0.75s linear infinite;
+  }
+
+  &.la-2x {
+    width: $size * 2;
+    height: $size * 2;
+
+    & > div {
+      width: $size * 2;
+      height: $size * 2;
+      border-width: $border-width * 2;
+    }
+  }
+}
+/* loading 動畫ED */
