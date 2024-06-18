@@ -26,6 +26,7 @@ const handleOptionSelection = async (option: string) => {
 onMounted(async () => {
   console.log("onMounted called");
   try {
+    console.log("getPopularMovies call~~~");
     movies.value = await getPopularMovies("day");
   } catch (error) {
     console.error("Error fetching popular movies on mount:", error);
