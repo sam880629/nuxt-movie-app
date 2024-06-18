@@ -102,5 +102,5 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-@import "/asset/css/MovieStyle/showCard.scss";
+@import "assets/css/MovieStyle/showCard.scss";
 </style>

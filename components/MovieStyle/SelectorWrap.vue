@@ -41,5 +41,5 @@ const selectOption = (option: string) => {
 </script>
 
 <style>
-@import "/asset/css/MovieStyle\SelectorWrap.scss";
+@import "assets/css/MovieStyle\SelectorWrap.scss";
 </style>
