@@ -1,7 +1,8 @@
 <!-- 首頁-熱門電影 -->
 <template>
   <SelectorWrap @optionSelected="handleOptionSelection" />
-  <MovieList :movies="movies" />
+  <MovieList v-if="movies.length>0" :movies="movies" />
+  <div v-else class="bg-[#211c1e] h-[520px]"></div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted} from "vue";
