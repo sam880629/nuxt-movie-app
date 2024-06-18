@@ -4,7 +4,7 @@
   <MovieList :movies="movies" />
 </template>
 <script setup lang="ts">
-import { ref, onMounted, inject } from "vue";
+import { ref, onMounted} from "vue";
 import MovieList from "~/components/MovieList.vue";
 import SelectorWrap from "~/components/MovieStyle/SelectorWrap.vue";
 import { getPopularMovies } from "../server/api/TmdbApi";
@@ -23,6 +23,7 @@ const handleOptionSelection = async (option: string) => {
 };
 
 onMounted(async () => {
+  console.log("onMounted called");
   try {
     movies.value = await getPopularMovies("day");
   } catch (error) {
