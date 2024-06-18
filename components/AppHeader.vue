@@ -76,5 +76,5 @@ const search = debounce(() => {
 </script>
 
 <style lang="scss">
-@import "assets/css/AppHeader.scss";
+@import "/assets/css/AppHeader.scss";
 </style>

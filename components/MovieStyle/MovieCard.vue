@@ -71,5 +71,5 @@ const voteNumber = ref<number>(Number(props.movie.vote_average.toFixed(1)));
 </script>
 
 <style>
-@import "assets/css/MovieStyle/MovieCard.scss";
+@import "/assets/css/MovieStyle/MovieCard.scss";
 </style>

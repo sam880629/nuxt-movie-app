@@ -65,5 +65,5 @@ watchEffect(async () => {
 });
 </script>
 <style lang="scss">
-@import "assets/css/pages/search.scss";
+@import "/assets/css/pages/search.scss";
 </style>
