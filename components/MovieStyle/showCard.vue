@@ -66,7 +66,7 @@ import {
   getMoviesDetails,
   getMovieVideos,
   getCredits,
-} from "~/server/api/TmdbApi";
+} from "~/utils/TmdbApi";
 
 const moviesDetails = ref<MovieDetailsType | any>([]);
 const moviesCredits = ref<CreditsType | any>({ actors: [], director: [] });
