@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted} from "vue";
-import { getPopularMovies } from "../server/api/TmdbApi";
+import { getPopularMovies,getMovies } from "../server/api/TmdbApi";
 import MovieList from "~/components/MovieList.vue";
 import SelectorWrap from "~/components/MovieStyle/SelectorWrap.vue";
 import type { MovieType } from "../types/movie";
@@ -26,7 +26,8 @@ onMounted(async () => {
   console.log("onMounted called");
   try {
     console.log("getPopularMovies call~~~");
-    movies.value = await getPopularMovies("day");
+    movies.value =await getMovies("沙丘");
+    // movies.value = await getPopularMovies("day");
     console.log("getPopularMovies called");
   } catch (error) {
     console.error("Error fetching popular movies on mount:", error);
