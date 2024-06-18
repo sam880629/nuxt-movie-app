@@ -1,5 +1,5 @@
 <template>
-  <div class="h-fit mt-5 lg:w-6/12 w-5/12">
+  <div class="h-fit  lg:w-8/12 w-6/12">
     <img
       class="rounded-t-xl "
       :src="Actor.profile_path"
