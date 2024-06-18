@@ -21,7 +21,7 @@ export const getPopularMovies = async (option: string) => {
 
     return data;
   } catch (error) {
-    console.log("err:" + error);
+    console.log("Error fetching popular movies:" + error);
     return [];
   }
 };
