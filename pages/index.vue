@@ -18,6 +18,7 @@ const movies = ref<MovieType[]>([]);//API資料
 const handleOptionSelection = async (option: string) => {
   try {
     movies.value = await getPopularMovies(option);
+    console.log(movies.value);
   } catch (error) {
     console.error("error:", error);
   }
