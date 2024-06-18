@@ -5,8 +5,8 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted} from "vue";
-import MovieList from "~/components/MovieList.vue";
 import { getPopularMovies } from "../server/api/TmdbApi";
+import MovieList from "~/components/MovieList.vue";
 import SelectorWrap from "~/components/MovieStyle/SelectorWrap.vue";
 import type { MovieType } from "../types/movie";
 
