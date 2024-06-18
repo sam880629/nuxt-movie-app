@@ -2,6 +2,7 @@
 <template>
   <SelectorWrap @optionSelected="handleOptionSelection" />
   <MovieList :movies="movies" />
+  <div>首頁</div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted, inject } from "vue";
