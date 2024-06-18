@@ -3,6 +3,7 @@ const API_KEY = "21595016d5497b10530c6a5162f7e9c2";
 
 //獲取熱門電影資料
 export const getPopularMovies = async (option: string) => {
+  console.log("getPopularMovies");
   const url = `https://api.themoviedb.org/3/trending/movie/${option}?api_key=${API_KEY}&language=zh-TW&page=1`;
   // console.log(url);
   try {
