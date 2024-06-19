@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="flex flex-col w-9/12 items-start h-fit lg:h-full"
+      class="flex flex-col w-9/12 items-start h-full"
       :class="{ 'lg:hidden': pageState }"
     >
       <div class="flex gap-10">
@@ -65,7 +65,7 @@
       </div>
 
       <!-- 預告片 -->
-      <div class="movieBox w-full h-[300px] lg:h-full mb-3"></div>
+      <div class="movieBox w-full h-[520px] lg:h-full mb-3"></div>
     </div>
     <!--right-arrow  -->
     <div
@@ -77,10 +77,10 @@
     </div>
     <!-- 演員區塊 -->
     <div
-      class="flex flex-col items-center w-full h-full lg:justify-start gap-5"
+      class="flex flex-col items-center w-full h-full lg:justify-start"
       :class="{ 'lg:hidden': !pageState }"
     >
-      <p class="text-[#efefef] text-2xl font-bold  text-center ">主要演員</p>
+      <p class="text-[#efefef] text-2xl font-bold m-5 text-center ">主要演員</p>
       <div
         class="ActorsCard text-[#efefef] grid grid-cols-2 xl:grid-cols-3 gap-2 justify-center items-center w-9/12"
       >
