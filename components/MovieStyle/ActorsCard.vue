@@ -1,5 +1,5 @@
 <template>
-  <div class="h-4/6 w-11/12">
+  <div class="h-4/6 w-11/12 self-start">
     <img
       class="rounded-t-xl  lg:h-[200px] w-full object-cover"
       :src="Actor.profile_path"
