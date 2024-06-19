@@ -2,15 +2,19 @@
   <div
     class="show-card max-w-full flex gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 max-h-fit h-4/6 md:h-5/6 p-8 pr-0"
   >
-   <!--left-arrow  -->
-    <div v-if="pageState" @click="ChangePage" class="text-white hidden lg:flex w-[38px]">
+    <!--left-arrow  -->
+    <div
+      v-if="pageState"
+      @click="ChangePage"
+      class="text-white hidden lg:flex w-[38px]"
+    >
       <img :src="pageBtn" alt="" class="" />
     </div>
     <!-- 海報 -->
-    <div class="w-8/12 lg:w-6/12 min-w-80 flex lg:flex-col">
+    <div class="w-8/12 lg:w-6/12 max-w-80 flex lg:flex-col">
       <img class="rounded-xl" :src="movieData.poster_path" alt="" />
     </div>
-   
+
     <div
       class="flex flex-col w-9/12 items-start h-full"
       :class="{ 'lg:hidden': pageState }"
@@ -31,7 +35,6 @@
             <p
               class="mr-2 p-0.5 bg-white border rounded-xl font-bold"
               v-for="genre in moviesDetails.genres"
-        
             >
               {{ genre.name }}
             </p>
@@ -49,7 +52,7 @@
         <div
           class="text-[#efefef] card-director w-fit flex justify-center flex-col items-center"
         >
-        <p class="text-[#efefef] font-bold text-2xl">Director</p>
+          <p class="text-[#efefef] font-bold text-2xl">Director</p>
           <img
             class="circle"
             :src="moviesCredits.director.profile_path"
@@ -62,23 +65,28 @@
       </div>
 
       <!-- 預告片 -->
-      <div class="movieBox w-full h-[520px] lg:h-full  mb-3"></div>
+      <div class="movieBox w-full h-[520px] lg:h-full mb-3"></div>
     </div>
     <!--right-arrow  -->
-    <div v-if="!pageState" @click="ChangePage" class="text-white hidden lg:flex lg:mr-2">
+    <div
+      v-if="!pageState"
+      @click="ChangePage"
+      class="text-white hidden lg:flex lg:mr-2"
+    >
       <img :src="pageBtn" alt="" class="w-[36px]" />
     </div>
     <!-- 演員區塊 -->
-    <div class="flex flex-col " :class="{ 'lg:hidden': !pageState }">
-      <p class="text-[#efefef] text-2xl font-bold mb-5 text-center">主要演員</p>
-      <div
-      class="ActorsCard text-[#efefef] grid grid-cols-2 lg:grid-cols-3 gap-5    justify-items-center"
-      
+    <div
+      class="flex flex-col items-center w-full h-full lg:justify-start"
+      :class="{ 'lg:hidden': !pageState }"
     >
-      <ActorsCard v-for="Actor in moviesCredits.actors" :Actor="Actor" />
+      <p class="text-[#efefef] text-2xl font-bold m-5 text-center ">主要演員</p>
+      <div
+        class="ActorsCard text-[#efefef] grid grid-cols-2 xl:grid-cols-3 gap-2 justify-center items-center w-9/12"
+      >
+        <ActorsCard v-for="Actor in moviesCredits.actors" :Actor="Actor" />
+      </div>
     </div>
-    </div>
-    
   </div>
 </template>
 
@@ -89,7 +97,7 @@ import type { PropType } from "vue";
 import type { MovieType, MovieDetailsType, CreditsType } from "~/types/movie";
 import { getMoviesDetails, getMovieVideos, getCredits } from "~/utils/TmdbApi";
 
-const moviesDetails = ref<MovieDetailsType|any>([]);
+const moviesDetails = ref<MovieDetailsType | any>([]);
 const moviesCredits = ref<CreditsType | any>({ actors: [], director: [] });
 const pageState = ref<Boolean>(false);
 let pageBtn = ref<string>("/image/right-arrow.png");
