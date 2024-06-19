@@ -55,15 +55,14 @@ export const getMoviesDetails = async (id: Number) => {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=zh-TW&page=1`;
   try {
     const response = await fetch(url, { method: "GET" });
-
     const data = await response.json();
-    const moivesData = data.map((val: any) => ({
-      ...val,
-      poster_path: val.poster_path
-        ? "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + val.poster_path
+    const movieData = {
+      ...data,
+      poster_path: data.poster_path
+        ? "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + data.poster_path
         : "/image/movie_image.jpg",
-    }));
-    return moivesData;
+    };
+    return movieData;
   } catch (error) {
     console.log("err:" + error);
     return [];

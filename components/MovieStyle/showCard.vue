@@ -30,10 +30,10 @@
           <div class="flex mb-1">
             <p
               class="mr-2 p-0.5 bg-white border rounded-xl font-bold"
-              v-for="genres in moviesDetails.genres"
-              :key="genres.id"
+              v-for="genre in moviesDetails.genres"
+        
             >
-              {{ genres.name }}
+              {{ genre.name }}
             </p>
           </div>
           <!-- 上映日期 -->
@@ -49,6 +49,7 @@
         <div
           class="text-[#efefef] card-director w-fit flex justify-center flex-col items-center"
         >
+        <p class="text-[#efefef] font-bold text-2xl">Director</p>
           <img
             class="circle"
             :src="moviesCredits.director.profile_path"
@@ -68,12 +69,16 @@
       <img :src="pageBtn" alt="" class="w-[36px]" />
     </div>
     <!-- 演員區塊 -->
-    <div
+    <div class="flex flex-col " :class="{ 'lg:hidden': !pageState }">
+      <p class="text-[#efefef] text-2xl font-bold mb-5 text-center">主要演員</p>
+      <div
       class="ActorsCard text-[#efefef] grid grid-cols-2 lg:grid-cols-3 gap-5    justify-items-center"
-      :class="{ 'lg:hidden': !pageState }"
+      
     >
       <ActorsCard v-for="Actor in moviesCredits.actors" :Actor="Actor" />
     </div>
+    </div>
+    
   </div>
 </template>
 
@@ -84,7 +89,7 @@ import type { PropType } from "vue";
 import type { MovieType, MovieDetailsType, CreditsType } from "~/types/movie";
 import { getMoviesDetails, getMovieVideos, getCredits } from "~/utils/TmdbApi";
 
-const moviesDetails = ref<MovieDetailsType | any>([]);
+const moviesDetails = ref<MovieDetailsType|any>([]);
 const moviesCredits = ref<CreditsType | any>({ actors: [], director: [] });
 const pageState = ref<Boolean>(false);
 let pageBtn = ref<string>("/image/right-arrow.png");
@@ -105,12 +110,12 @@ const ChangePage = () => {
     ? "/image/left-arrow.png"
     : "/image/right-arrow.png";
 };
+
 onMounted(async () => {
   try {
     moviesDetails.value = await getMoviesDetails(props.movieData.id);
     getMovieVideos(props.movieData.id);
     moviesCredits.value = await getCredits(props.movieData.id);
-    console.log(moviesCredits.value);
   } catch (error) {
     console.error("error:", error);
   }

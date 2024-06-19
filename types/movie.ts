@@ -9,12 +9,17 @@ export interface MovieType {
   backdrop_path: string;
   original_title: string;
 }
+interface GenreType {
+  id: number;
+  name: string;
+}
 
 // 電影詳細資料
 export interface MovieDetailsType {
-  genres: object[];
+  genres: GenreType[];
   runtime: number;
   video: string;
+  [key:string]: any;
 }
 
 interface directorType {
