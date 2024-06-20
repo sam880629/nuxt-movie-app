@@ -11,7 +11,7 @@
       <img :src="pageBtn" alt="" class="" />
     </div>
     <!-- 海報 -->
-    <div class="w-8/12 lg:w-6/12 max-w-80 flex lg:flex-col">
+    <div class="w-8/12 lg:w-6/12 max-w-80 flex lg:flex-col mt-10 lg-mt-0">
       <img class="rounded-xl" :src="movieData.poster_path" alt="" />
     </div>
 
