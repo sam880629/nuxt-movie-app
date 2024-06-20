@@ -19,14 +19,16 @@ html {
     overflow: auto;
 }
 .body{
-   position: absolute;
+
+  background-color: #211c1e;
+   /* position: absolute; */
     top: 10px;
     left: 20px;
     bottom: 10px;
     right: 0;
     padding: 30px; 
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
 }
 ::-webkit-scrollbar {
     width: 10px;
