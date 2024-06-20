@@ -31,9 +31,9 @@
             {{ movieData.original_title }}
           </p>
           <!-- 分類 -->
-          <div class="flex mb-1">
+          <div class="flex  flex-wrap">
             <p
-              class="mr-2 p-0.5 bg-white border rounded-xl font-bold"
+              class="mr-2 p-0.5 bg-white border rounded-xl font-bold mb-2"
               v-for="genre in moviesDetails.genres"
             >
               {{ genre.name }}
