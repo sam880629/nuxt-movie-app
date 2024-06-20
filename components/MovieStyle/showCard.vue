@@ -1,6 +1,6 @@
 <template>
   <div
-    class="show-card max-w-full flex gap-20 lg-gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 min-h-[510px] h-4/6 md:h-5/6 p-8 pr-0 "
+    class="show-card max-w-full flex gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 min-h-[510px] h-4/6 md:h-5/6 p-8 pr-0 "
   >
     <!--left-arrow  -->
     <div
@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="flex flex-col w-9/12 items-start h-full"
+      class="flex flex-col w-9/12 items-start lg:h-full"
       :class="{ 'lg:hidden': pageState }"
     >
       <div class="flex gap-10">
@@ -65,7 +65,7 @@
       </div>
 
       <!-- 預告片 -->
-      <div class="movieBox  w-full h-[520px] lg:h-full mb-3"></div>
+      <div class="movieBox  w-full h-[300px]  lg:h-full mb-3"></div>
     </div>
     <!--right-arrow  -->
     <div
