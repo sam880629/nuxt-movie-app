@@ -1,6 +1,6 @@
 <template>
   <div
-    class="show-card max-w-full flex gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 max-h-fit h-4/6 md:h-5/6 p-8 pr-0"
+    class="show-card max-w-full flex gap-20 lg-gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 min-h-[510px] h-4/6 md:h-5/6 p-8 pr-0 "
   >
     <!--left-arrow  -->
     <div
@@ -65,7 +65,7 @@
       </div>
 
       <!-- 預告片 -->
-      <div class="movieBox w-full h-[520px] lg:h-full mb-3"></div>
+      <div class="movieBox  w-full h-[520px] lg:h-full mb-3"></div>
     </div>
     <!--right-arrow  -->
     <div
@@ -82,7 +82,7 @@
     >
       <p class="text-[#efefef] text-2xl font-bold m-5 text-center ">主要演員</p>
       <div
-        class="ActorsCard text-[#efefef] grid grid-cols-2 xl:grid-cols-3 gap-2 justify-center items-center w-9/12"
+        class="ActorsCard text-[#efefef] grid grid-cols-2 xl:grid-cols-3 gap-2 justify-center items-center lg:items-start w-9/12"
       >
         <ActorsCard v-for="Actor in moviesCredits.actors" :Actor="Actor" />
       </div>
