@@ -1,6 +1,30 @@
 .select_btn {
-    @apply flex-1 box-border font-bold rounded-xl text-white text-center m-[3px] w-[72px] h-[28px] cursor-pointer  p-[2px];
+  @apply flex-1 box-border font-bold rounded-xl text-white text-center m-[3px] w-[72px] h-[28px] cursor-pointer  p-[2px] z-10;
+}
+
+.select_day {
+  left: 0;
+  animation: select_day 1s forwards;
+  transition: all 1s ease-in 2s;
+}
+.select_week {
+  animation: select_week 1s forwards;
+  transition: all 1s ease-in 2s;
+}
+//按鈕切換動畫
+@keyframes select_day {
+  from {
+    left: calc(100% - 78px);
   }
-  .select {
-    @apply border-2 bg-cyan-950 p-0;
+  to {
+    left: 0;
   }
+}
+@keyframes select_week {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 78px);
+  }
+}
