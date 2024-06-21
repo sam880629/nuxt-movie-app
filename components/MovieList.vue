@@ -3,7 +3,7 @@
     <div
       class="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4"
     >
-      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
+      <MovieCard v-for="(movie, index) in movies" :key="movie.id" :movie="movie" :index="index" />
     </div>
   </div>
 </template>
@@ -19,6 +19,14 @@ const props = defineProps({
     required: true,
   }
 });
+
+onMounted(() => {
+  const cards = document.querySelectorAll(".movie-card");
+  cards.forEach((card, index) => {
+    (card as HTMLElement).style.animationDelay = `${index * 0.2}s`;
+  });
+});
+
 </script>
 
 <style></style>

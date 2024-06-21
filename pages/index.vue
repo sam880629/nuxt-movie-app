@@ -15,6 +15,7 @@ const movies = ref<MovieType[]>([]);//API資料
 
 // 監聽切換day/week 趨勢資料按鈕
 const handleOptionSelection = async (option: string) => {
+  movies.value=[];
   try {
     movies.value = await getPopularMovies(option);
   } catch (error) {
