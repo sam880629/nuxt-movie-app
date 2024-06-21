@@ -9,7 +9,7 @@
 useHead({
   title: "CinemaHub",
   link: [
-  { rel: 'CinemaHub icon', href: '/public/logo.ico' },
+  { rel: 'CinemaHub icon', href: 'logo.ico' },
 ],
 });
 
