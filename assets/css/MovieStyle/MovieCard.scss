@@ -23,7 +23,8 @@
     transform: scale(1);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  &:hover .backdrop_img {
+  &:hover .backdrop_img,
+  &:active .backdrop_img{
     position: relative;
     opacity: 1;
     z-index: 20;
