@@ -20,12 +20,6 @@ const props = defineProps({
   }
 });
 
-onMounted(() => {
-  // const cards = document.querySelectorAll(".movie-card");
-  // cards.forEach((card, index) => {
-  //   (card as HTMLElement).style.animationDelay = `${index * 0.2}s`;
-  // });
-});
 
 </script>
 

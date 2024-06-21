@@ -19,6 +19,7 @@ const isLoading = ref<boolean>(false); //防止多次觸發
 const handleOptionSelection = async (selectedOption: string) => {
   option.value = selectedOption;
   movies.value = [];
+  page.value= 1;
   try {
     movies.value = await getPopularMovies(option.value, page.value);
   } catch (error) {
@@ -43,12 +44,12 @@ const loadMoreMovies = async () => {
 
 onMounted(async () => {
   await loadMoreMovies();
-  // window.addEventListener("scroll", function() {
-  //   // 檢查是否到底部
-  //   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-  //       loadMoreMovies();
-  //   }
-  // });
+  window.addEventListener("scroll", function() {
+    // 檢查是否到底部
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        loadMoreMovies();
+    }
+  });
 });
 </script>
 

@@ -23,6 +23,7 @@
 }
 .card-title {
   animation-name: fadeInLeft;
+  animation-fill-mode: forwards;
   animation-duration: 1s;
 }
 .card-original_title {
