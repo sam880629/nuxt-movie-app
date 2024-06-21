@@ -1,10 +1,10 @@
 <template>
   <div
-    class="movie-card  w-auto bg-[#353132] border-[#4e484a] border  rounded-xl cursor-pointer h-full"
+    class="movie-card w-auto bg-[#353132] border-[#4e484a] border rounded-xl cursor-pointer h-full"
     @click="toggleShowCard"
     :data-id="movie.id"
   >
-    <div class="py-4 pl-8 flex flex-col lg:pl-6 ">
+    <div class="py-4 pl-8 flex flex-col lg:pl-6 relative">
       <div class="pr-4 text-[#efefef] flex gap-2 justify-between items-center">
         <!-- 電影標題 -->
         <p
@@ -23,7 +23,11 @@
         class="mt-4 mb-20 sm:mb-10 lg:mb-6 sm:w-70 md:w-70 lg:w-90 w-5/6 relative"
       >
         <!-- 海報圖 -->
-        <img class="poster_img rounded-xl" :src="movie.poster_path" alt="poster_img" />
+        <img
+          class="poster_img rounded-xl"
+          :src="movie.poster_path"
+          alt="poster_img"
+        />
         <!-- 背景圖 -->
         <img
           class="backdrop_img rounded-xl"
@@ -44,7 +48,6 @@
       v-if="showCardState"
       @click.stop
     />
-
   </div>
 </template>
 
@@ -67,7 +70,6 @@ const toggleShowCard = () => {
   showCardState.value = !showCardState.value;
 };
 const voteNumber = ref<number>(Number(props.movie.vote_average.toFixed(1)));
-
 </script>
 
 <style>

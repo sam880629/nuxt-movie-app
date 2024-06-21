@@ -1,6 +1,6 @@
 <template>
   <div
-    class="show-card max-w-full flex gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 min-h-[510px] h-4/6 md:h-5/6 lg:p-8 lg:pr-0 "
+    class="show-card max-w-full flex gap-10 lg:gap-5 z-50 flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto w-9/12 min-h-[510px] h-4/6 md:h-5/6 lg:p-8 lg:pr-0 relative"
   >
     <!--left-arrow  -->
     <div
