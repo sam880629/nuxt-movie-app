@@ -48,6 +48,7 @@
       v-if="showCardState"
       @click.stop
     />
+
   </div>
 </template>
 
