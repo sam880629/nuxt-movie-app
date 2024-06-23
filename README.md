@@ -20,3 +20,5 @@ Live Demo ➡️<a href="https://nuxt-movie-app-pi.vercel.app/">Demo live</a>
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Demo
+首頁-熱門電影顯示
+![nuxt-movie-app-pi vercel app_ (2)](https://github.com/sam880629/nuxt-movie-app/assets/116621544/9f1c9e9e-aa2f-4660-9de0-06884e2f8b86)
