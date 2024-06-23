@@ -31,7 +31,7 @@ const loadMoreMovies = async () => {
   if (isLoading.value) return;
   isLoading.value = true;
   page.value++;
-  if (page.value == 5) return;
+  if (page.value == 5) return;//最多加載5頁
   try {
     const newMovies = await getPopularMovies(option.value, page.value);
     movies.value = [...movies.value, ...newMovies];

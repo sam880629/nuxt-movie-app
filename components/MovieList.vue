@@ -5,6 +5,7 @@
     >
       <MovieCard v-for="(movie, index) in movies" :key="movie.id" :movie="movie" :index="index" />
     </div>
+    <button   class="scroll-to-top text-2xl text-white">↑</button>
   </div>
 </template>
 
