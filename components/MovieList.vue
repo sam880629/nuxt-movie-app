@@ -5,7 +5,7 @@
     >
       <MovieCard v-for="(movie, index) in movies" :key="movie.id" :movie="movie" :index="index" />
     </div>
-    <button   class="scroll-to-top text-2xl text-white">↑</button>
+    <button  v-show="showScrollTop" @click="scrollToTop" class="scroll-to-top  ">↑</button>
   </div>
 </template>
 
@@ -14,14 +14,26 @@ import MovieCard from "~/components/MovieStyle/MovieCard.vue";
 import type { MovieType } from "~/types/movie";
 import type { PropType } from "vue";
 
+const showScrollTop = ref<boolean>(false);
 const props = defineProps({
   movies: {
     type: Array as PropType<MovieType[]>,
     required: true,
   }
 });
+const handleScroll = () => {
+  showScrollTop.value = window.scrollY > 200;
+};
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+onMounted(async () => {
+    window.addEventListener('scroll', handleScroll);
+});
 
 </script>
 
-<style></style>
+<style lang="scss">
+@import "/assets/css/MovieList.scss";
+</style>
