@@ -5,7 +5,6 @@
       :src="Actor.profile_path"
       alt=""
     />
-
     <p class="rounded-b-xl bg-black text-center text-lg  font-bold ">{{ Actor.name }}</p>
     <p class="text-center text-sm">{{ Actor.character }}</p>
   </div>
