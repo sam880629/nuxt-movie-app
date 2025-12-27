@@ -1,15 +1,15 @@
-const getApiKey = () => useRuntimeConfig().public.tmdbApiKey
-
-const IMAGE_BASE = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
+const getConfig = () => useRuntimeConfig().public
 
 // 共用：處理圖片路徑
 const formatImage = (path: string | null, fallback: string) => {
-  return path ? IMAGE_BASE + path : fallback
+  const { tmdbImageBaseUrl } = getConfig()
+  return path ? tmdbImageBaseUrl + path : fallback
 }
 
 // 獲取熱門電影資料
 export const getPopularMovies = async (option: string, page: number) => {
-  const url = `https://api.themoviedb.org/3/trending/movie/${option}?api_key=${getApiKey()}&language=zh-TW&page=${page}`
+  const { tmdbApiKey, tmdbApiBaseUrl } = getConfig()
+  const url = `${tmdbApiBaseUrl}/trending/movie/${option}?api_key=${tmdbApiKey}&language=zh-TW&page=${page}`
   try {
     const response = await fetch(url).then(res => res.json())
     return response.results.map((val: any) => ({
@@ -25,7 +25,8 @@ export const getPopularMovies = async (option: string, page: number) => {
 
 // 搜尋電影資料
 export const getMovies = async (query: string) => {
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${getApiKey()}&language=zh-TW&page=1&query=${query}`
+  const { tmdbApiKey, tmdbApiBaseUrl } = getConfig()
+  const url = `${tmdbApiBaseUrl}/search/movie?api_key=${tmdbApiKey}&language=zh-TW&page=1&query=${query}`
   try {
     const response = await fetch(url).then(res => res.json())
     return response.results.map((val: any) => ({
@@ -41,7 +42,8 @@ export const getMovies = async (query: string) => {
 
 // 獲取電影詳細資料
 export const getMoviesDetails = async (id: number) => {
-  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${getApiKey()}&language=zh-TW&page=1`
+  const { tmdbApiKey, tmdbApiBaseUrl } = getConfig()
+  const url = `${tmdbApiBaseUrl}/movie/${id}?api_key=${tmdbApiKey}&language=zh-TW&page=1`
   try {
     const response = await fetch(url)
     const data = await response.json()
@@ -57,25 +59,27 @@ export const getMoviesDetails = async (id: number) => {
 
 // 取得預告片
 export const getMovieVideos = async (id: number) => {
-  const movieBox = document.querySelector('.movieBox') as HTMLElement
-  const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${getApiKey()}&language=en-US`
+  const { tmdbApiKey, tmdbApiBaseUrl } = getConfig()
+  const url = `${tmdbApiBaseUrl}/movie/${id}/videos?api_key=${tmdbApiKey}&language=en-US`
   try {
     const res = await fetch(url)
     const videoData = await res.json()
     if (videoData.results.length > 0) {
       const target = videoData.results.find((val: any) => val.type === 'Trailer')
-      if (target) {
-        movieBox.innerHTML = `<iframe class="video" src="https://www.youtube.com/embed/${target.key}" title="${target.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
-      }
+      return target ? target.key : null
     }
+   
+    return null
   } catch (e) {
     console.log('error:', e)
+    return null
   }
 }
 
 // 工作人員資料
 export const getCredits = async (id: number) => {
-  const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${getApiKey()}&language=zh-TW`
+  const { tmdbApiKey, tmdbApiBaseUrl } = getConfig()
+  const url = `${tmdbApiBaseUrl}/movie/${id}/credits?api_key=${tmdbApiKey}&language=zh-TW`
   try {
     const response = await fetch(url)
     const data = await response.json()
@@ -91,7 +95,7 @@ export const getCredits = async (id: number) => {
         ...val,
         profile_path: formatImage(val.profile_path, '/image/nullActor.jpg'),
       }))[0]
-
+    
     return { actors, director }
   } catch (err) {
     console.log('error:', err)

@@ -19,24 +19,24 @@ export interface MovieDetailsType {
   genres: GenreType[];
   runtime: number;
   video: string;
-  [key:string]: any;
+  [key: string]: any;
 }
 
-interface directorType {
+export interface DirectorType {
   job: string;
   name: string;
-  profile_path: string | null;
-  [key: string]: any; 
+  profile_path: string;
+  [key: string]: any;
+}
+
+export interface ActorType {
+  name: string;
+  profile_path: string;
+  [key: string]: any;
 }
 
 //電影演員資料
 export interface CreditsType {
-  actors: {};
-  director: directorType[];
-}
-
-export interface ActorsType{
-    name: string;
-    profile_path: string;
-    [key: string]: any; 
+  actors: ActorType[];
+  director: DirectorType;
 }
