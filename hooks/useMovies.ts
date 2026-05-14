@@ -1,17 +1,9 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { getPopularMovies, getMovies, getMoviesDetails, getMovieTrailerKey, getCredits } from '@/lib/tmdb'
+import { movieQueryOptions } from '@/lib/movieQueries'
 import { useMemo } from 'react'
 
-const MAX_PAGES = 5
-
 export function usePopularMovies(option: string) {
-  const query = useInfiniteQuery({
-    queryKey: ['popularMovies', option],
-    queryFn: ({ pageParam }) => getPopularMovies(option, pageParam as number),
-    initialPageParam: 1,
-    getNextPageParam: (_, __, lastPageParam) =>
-      (lastPageParam as number) >= MAX_PAGES ? undefined : (lastPageParam as number) + 1,
-  })
+  const query = useInfiniteQuery(movieQueryOptions.trending(option))
 
   const movies = useMemo(() => {
     if (!query.data) return []
@@ -24,30 +16,17 @@ export function usePopularMovies(option: string) {
 }
 
 export function useSearchMovies(query: string) {
-  return useQuery({
-    queryKey: ['searchMovies', query],
-    queryFn: () => getMovies(query),
-    enabled: !!query,
-  })
+  return useQuery(movieQueryOptions.search(query))
 }
 
 export function useMovieDetails(id: number) {
-  return useQuery({
-    queryKey: ['movieDetails', id],
-    queryFn: () => getMoviesDetails(id),
-  })
+  return useQuery(movieQueryOptions.detail(id))
 }
 
 export function useMovieTrailer(id: number) {
-  return useQuery({
-    queryKey: ['movieTrailer', id],
-    queryFn: () => getMovieTrailerKey(id),
-  })
+  return useQuery(movieQueryOptions.trailer(id))
 }
 
-export function useCredits(id: number) {
-  return useQuery({
-    queryKey: ['movieCredits', id],
-    queryFn: () => getCredits(id),
-  })
+export function useMovieCredits(id: number) {
+  return useQuery(movieQueryOptions.credits(id))
 }
