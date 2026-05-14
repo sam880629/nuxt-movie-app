@@ -1,4 +1,3 @@
-// 熱門電影資料定義型別
 export interface MovieType {
   id: number;
   title: string;
@@ -9,12 +8,12 @@ export interface MovieType {
   backdrop_path: string;
   original_title: string;
 }
+
 interface GenreType {
   id: number;
   name: string;
 }
 
-// 電影詳細資料
 export interface MovieDetailsType {
   genres: GenreType[];
   runtime: number;
@@ -22,21 +21,21 @@ export interface MovieDetailsType {
   [key: string]: any;
 }
 
-export interface DirectorType {
+interface DirectorType {
   job: string;
   name: string;
-  profile_path: string;
+  profile_path: string | null;
   [key: string]: any;
 }
 
-export interface ActorType {
+export interface CreditsType {
+  actors: ActorsType[];
+  director: DirectorType;
+}
+
+export interface ActorsType {
   name: string;
   profile_path: string;
+  character: string;
   [key: string]: any;
-}
-
-//電影演員資料
-export interface CreditsType {
-  actors: ActorType[];
-  director: DirectorType;
 }
