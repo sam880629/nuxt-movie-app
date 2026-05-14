@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { MovieType } from '@/types/movie'
-import { useMovieDetails, useMovieTrailer, useCredits } from '@/hooks/useMovies'
+import { MovieType, ActorsType } from '@/types/movie'
+import { useMovieDetails, useMovieTrailer, useMovieCredits } from '@/hooks/useMovies'
 import ActorsCard from './ActorsCard'
 
 interface Props {
@@ -15,7 +15,7 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
 
   const { data: details } = useMovieDetails(movieData.id)
   const { data: trailerKey } = useMovieTrailer(movieData.id)
-  const { data: credits } = useCredits(movieData.id)
+  const { data: credits } = useMovieCredits(movieData.id)
 
   const actors = credits?.actors ?? []
   const director = credits?.director ?? null
@@ -86,7 +86,7 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
       <div className={`flex flex-col items-center w-full h-full lg:justify-start ${!showActors ? 'lg:hidden' : ''}`}>
         <p className="text-[#efefef] text-2xl font-bold m-5 text-center">主要演員</p>
         <div className="ActorsCard text-[#efefef] grid grid-cols-2 xl:grid-cols-3 gap-2 justify-center items-center lg:items-start w-9/12">
-          {actors.map((actor) => (
+          {actors.map((actor: ActorsType) => (
             <ActorsCard key={actor.id} actor={actor} />
           ))}
         </div>
