@@ -9,6 +9,15 @@ dist
 # Node dependencies
 node_modules
 
+# React sub-project
+react-cinema-hub/node_modules
+react-cinema-hub/.next
+react-cinema-hub/.pnp
+react-cinema-hub/coverage
+react-cinema-hub/*.tsbuildinfo
+react-cinema-hub/next-env.d.ts
+react-cinema-hub/.env*
+
 # Logs
 logs
 *.log
