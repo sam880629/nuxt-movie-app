@@ -11,21 +11,21 @@ export default function MovieCard({ movie }: { movie: MovieType }) {
   return (
     <>
       <div
-        className="movie-card w-auto bg-[#353132] border-[#4e484a] border rounded-xl cursor-pointer h-full"
+        className="movie-card   bg-[#353132] border-[#4e484a] border rounded-xl cursor-pointer h-full"
         onClick={() => setOpen(true)}
       >
-        <div className="py-4 pl-8 flex flex-col lg:pl-6 relative">
-          <div className="pr-4 text-[#efefef] flex gap-2 justify-between items-center">
-            <p className="py-2 px-4 bg-[#272425] truncate text-[#efefef] rounded-3xl max-w-fit text-xl lg:text-base font-bold">
+        <div className="p-3 sm:p-4 flex flex-col relative">
+          <div className="pr-2 text-[#efefef] flex gap-2 justify-between items-center">
+            <p className="py-1.5 px-3 bg-[#272425] truncate text-[#efefef] rounded-3xl text-sm font-bold min-w-0">
               {movie.title}
             </p>
-            <p className="font-mono p-4 w-10 h-10 font-bold rounded-[50%] bg-white text-[#272425] flex justify-center items-center">
+            <p className="font-mono shrink-0 w-9 h-9 text-sm font-bold rounded-full bg-white text-[#272425] flex justify-center items-center">
               {voteNumber}
             </p>
           </div>
-          <div className="mt-4 mb-20 sm:mb-10 lg:mb-6 sm:w-70 md:w-70 lg:w-90 w-5/6 relative">
-            <img className="poster_img rounded-xl" src={movie.poster_path} alt="poster" />
-            <img className="backdrop_img rounded-xl" src={movie.backdrop_path} alt="backdrop" />
+          <div className="p-5 mt-3 w-full relative overflow-hidden rounded-xl">
+            <img className="poster_img rounded-xl w-full h-auto" src={movie.poster_path} alt="poster" />
+            <img className="backdrop_img rounded-xl w-full h-auto" src={movie.backdrop_path} alt="backdrop" />
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
 
   return (
     <Card
-      className="show-card relative max-w-[95vw] md:max-w-[90vw] lg:max-w-6xl w-full z-50 bg-[#2b2628] border border-[#4a4346] shadow-2xl"
+      className="show-card relative flex flex-col  md:h-[90vh]  h-auto max-w-[95vw] md:max-w-[90vw] lg:max-w-6xl w-full z-50 bg-[#2b2628] border border-[#4a4346] shadow-2xl md:overflow-y-scroll "
       onClick={(e) => e.stopPropagation()}
     >
       <Button
@@ -53,100 +53,106 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
         <X size={18} color="white" />
       </Button>
 
-      <Card.Header className="p-4 md:p-6 border-b border-[#454042] pr-12 md:pr-14 ">
+      <Card.Header className="p-3 sm:p-4 md:p-6 border-b border-[#454042] pr-12 md:pr-14">
         <div className="min-w-0">
-          <Card.Title className="text-[#f4f1f2] text-xl md:text-3xl">
+          <Card.Title className="text-[#f4f1f2] text-lg sm:text-xl md:text-3xl">
             {movieData.title}
           </Card.Title>
-          <Card.Description className="text-[#b3a9ad] text-sm truncate pt-2">
+          <Card.Description className="text-[#b3a9ad] text-xs sm:text-sm truncate pt-1.5 sm:pt-2">
             {movieData.original_title}
           </Card.Description>
         </div>
       </Card.Header>
 
-      <Card.Content className="p-4 pt-0 ">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 ">
-          <div className="lg:col-span-4 xl:col-span-3 pt-7">
+      <Card.Content className="flex-1 min-h-0 p-3 sm:p-4 pt-0 pb-4 overflow-y-auto ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-8">
+          <div className="lg:col-span-4 xl:col-span-3 pt-4 sm:pt-6 lg:pt-7">
             <Card className="bg-[#221f20] border border-[#3d383a] lg:sticky lg:top-4">
-              <Card.Content className="p-4">
+              <Card.Content className="p-3 sm:p-4">
+                {/* 劇照 */}
                 <img
-                  className="rounded-xl w-full max-w-80 mx-auto object-cover"
+                  className="rounded-xl w-full max-w-56 sm:max-w-72 lg:max-w-80 mx-auto object-cover"
                   src={movieData.poster_path}
                   alt={movieData.title}
                 />
-
-                <div className="mt-4 grid gap-2 text-white">
-                  <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
-                    <div className="flex items-center gap-2 text-[#c5bdc1] text-sm">
-                      <CalendarDays size={14} />
-                      <span>上映年份</span>
+                {/* 電影資訊 + 導演（手機左右、桌機上下） */}
+                <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-1">
+                  <div className="grid gap-2 text-white">
+                    <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
+                      <div className="flex items-center gap-2 text-[#c5bdc1] text-xs sm:text-sm">
+                        <CalendarDays size={14} />
+                        <span>上映年份</span>
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-[#f5f2f3]">
+                        {releaseYear}
+                      </span>
                     </div>
-                    <span className="text-sm font-semibold text-[#f5f2f3]">
-                      {releaseYear}
-                    </span>
+
+                    <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
+                      <div className="flex items-center gap-2 text-[#c5bdc1] text-xs sm:text-sm">
+                        <Clock3 size={14} />
+                        <span>片長</span>
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-[#f5f2f3]">
+                        {runtimeLabel}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
+                      <div className="flex items-center gap-2 text-[#c5bdc1] text-xs sm:text-sm">
+                        <Star size={14} />
+                        <span>TMDB評分</span>
+                      </div>
+                      <span className="text-xs sm:text-sm font-semibold text-[#f5f2f3]">
+                        {score}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
-                    <div className="flex items-center gap-2 text-[#c5bdc1] text-sm">
-                      <Clock3 size={14} />
-                      <span>片長</span>
-                    </div>
-                    <span className="text-sm font-semibold text-[#f5f2f3]">
-                      {runtimeLabel}
-                    </span>
-                  </div>
+                  <div>
+                    {!isCreditsLoading && director && (
+                      <Card className="bg-[#181516] border border-[#312d2f] h-full">
+                        <Card.Content className="p-2 sm:p-3 h-full">
+                          <div className="relative overflow-hidden rounded-lg border border-[#393537] bg-[#111] h-32 sm:h-44 lg:h-44">
+                            <img
+                              className="h-full w-full object-cover"
+                              src={director.profile_path}
+                              alt={director.name}
+                            />
+                            <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/80 to-transparent" />
+                            <div className="absolute bottom-2 left-3 right-3 min-w-0">
+                              <p className="text-[#c6bec1] text-[11px] uppercase tracking-[0.18em]">
+                                Director
+                              </p>
+                              <p className="text-[#f5f2f3] text-sm font-semibold truncate">
+                                {director.name}
+                              </p>
+                            </div>
+                          </div>
+                        </Card.Content>
+                      </Card>
+                    )}
 
-                  <div className="flex items-center justify-between rounded-lg border border-[#393537] bg-[#1a1718] px-3 py-2">
-                    <div className="flex items-center gap-2 text-[#c5bdc1] text-sm">
-                      <Star size={14} />
-                      <span>評分</span>
-                    </div>
-                    <span className="text-sm font-semibold text-[#f5f2f3]">
-                      {score}
-                    </span>
+                    {isCreditsLoading && (
+                      <Card className="bg-[#181516] border border-[#312d2f] h-full">
+                        <Card.Content className="p-2 sm:p-3 h-full">
+                          <Skeleton className="rounded-lg h-32 sm:h-44 lg:h-44 w-full" />
+                        </Card.Content>
+                      </Card>
+                    )}
                   </div>
                 </div>
-
-                {!isCreditsLoading && director && (
-                  <Card className="bg-[#181516] border border-[#312d2f] mt-4">
-                    <Card.Content className="p-3">
-                      <div className="relative overflow-hidden rounded-lg border border-[#393537] bg-[#111] h-44">
-                        <img
-                          className="h-full w-full object-cover"
-                          src={director.profile_path}
-                          alt={director.name}
-                        />
-                        <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/80 to-transparent" />
-                        <div className="absolute bottom-2 left-3 right-3 min-w-0">
-                          <p className="text-[#c6bec1] text-[11px] uppercase tracking-[0.18em]">
-                            Director
-                          </p>
-                          <p className="text-[#f5f2f3] text-sm font-semibold ">
-                            {director.name}
-                          </p>
-                        </div>
-                      </div>
-                    </Card.Content>
-                  </Card>
-                )}
-                {isCreditsLoading && (
-                  <Card className="bg-[#181516] border border-[#312d2f] mt-4">
-                    <Card.Content className="p-3 space-y-3">
-                      <Skeleton className="rounded-lg h-44 w-full" />
-                    </Card.Content>
-                  </Card>
-                )}
               </Card.Content>
             </Card>
           </div>
 
-          <div className="lg:col-span-8 xl:col-span-9 flex flex-col ">
-            <div className="flex items-center gap-2 ml-5">
+          <div className="lg:col-span-8 xl:col-span-9 flex flex-col">
+            <div className="flex items-center gap-2 px-1 sm:px-2 lg:ml-5">
               <Button
                 size="sm"
                 variant={showActors ? "secondary" : "primary"}
                 onPress={() => setShowActors(false)}
-                className="rounded-b-none"
+                className="rounded-b-none flex-1 lg:flex-none"
               >
                 介紹
               </Button>
@@ -154,7 +160,7 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
                 size="sm"
                 variant={showActors ? "primary" : "secondary"}
                 onPress={() => setShowActors(true)}
-                className="rounded-b-none"
+                className="rounded-b-none flex-1 lg:flex-none"
               >
                 演員
               </Button>
@@ -162,7 +168,7 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
 
             {!showActors ? (
               <div className="flex flex-col gap-3">
-                <div className="rounded-xl overflow-hidden border border-[#3d383a] bg-[#1f1c1d] min-h-55 md:min-h-75 lg:min-h-96">
+                <div className="rounded-xl overflow-hidden border border-[#3d383a] bg-[#1f1c1d] min-h-48 md:min-h-75 lg:min-h-96">
                   {trailerKey ? (
                     <iframe
                       className="video"
@@ -174,14 +180,14 @@ export default function ShowCard({ movieData, onClose: _onClose }: Props) {
                       allowFullScreen
                     />
                   ) : isTrailerLoading ? (
-                    <div className="w-full h-full min-h-55 md:min-h-75 lg:min-h-96 p-4 md:p-6 grid gap-3 content-center">
+                    <div className="w-full h-full min-h-48 md:min-h-75 lg:min-h-96 p-4 md:p-6 grid gap-3 content-center">
                       <Skeleton className="rounded-xl h-8 w-2/5 opacity-50" />
                       <Skeleton className="rounded-xl h-10 w-full opacity-50" />
                       <Skeleton className="rounded-xl h-10 w-11/12 opacity-50" />
                       <Skeleton className="rounded-xl h-10 w-10/12 opacity-50" />
                     </div>
                   ) : (
-                    <div className="w-full h-full min-h-55 md:min-h-75 lg:min-h-96 flex items-center justify-center text-[#9f9599]">
+                    <div className="w-full h-full min-h-48 md:min-h-75 lg:min-h-96 flex items-center justify-center text-[#9f9599] text-sm">
                       目前無預告片
                     </div>
                   )}

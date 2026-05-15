@@ -4,8 +4,8 @@ import { Avatar, Card } from '@heroui/react'
 export default function ActorsCard({ actor }: { actor: ActorsType }) {
   return (
     <Card className="bg-[#221f20] border border-[#3d383a]">
-      <Card.Content className="p-4 flex items-center gap-3">
-        <Avatar className="size-16 shrink-0">
+      <Card.Content className="p-3 sm:p-4 flex items-center gap-3">
+        <Avatar className="size-14 sm:size-16 shrink-0">
           <Avatar.Image className="h-full w-full object-cover" src={actor.profile_path} alt={actor.name} />
           <Avatar.Fallback>{actor.name.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
