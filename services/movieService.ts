@@ -10,6 +10,10 @@ async function apiFetch<T>(url: string): Promise<T> {
 export const fetchTrendingMovies = (option: string, page: number): Promise<MovieType[]> =>
   apiFetch(`/api/movies/trending?option=${option}&page=${page}`)
 
+// 依分類抓取電影清單
+export const fetchMovieList = (category: string, option: string, page: number): Promise<MovieType[]> =>
+  apiFetch(`/api/movies/list?category=${category}&option=${option}&page=${page}`)
+
 // 搜尋電影
 export const fetchSearchMovies = (query: string): Promise<MovieType[]> =>
   apiFetch(`/api/movies/search?q=${encodeURIComponent(query)}`)

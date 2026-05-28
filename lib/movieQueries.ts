@@ -2,6 +2,7 @@ import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query'
 import {
   fetchMovieCredits,
   fetchMovieDetails,
+  fetchMovieList,
   fetchMovieTrailerKey,
   fetchSearchMovies,
   fetchTrendingMovies,
@@ -13,6 +14,7 @@ const MAX_PAGES = 5
 export const movieQueryKeys = {
   all: ['movies'] as const,
   trending: (option: string) => [...movieQueryKeys.all, 'trending', option] as const,
+  list: (category: string, option: string) => [...movieQueryKeys.all, 'list', category, option] as const,
   search: (query: string) => [...movieQueryKeys.all, 'search', query] as const,
   detail: (id: number) => [...movieQueryKeys.all, 'detail', id] as const,
   trailer: (id: number) => [...movieQueryKeys.all, 'trailer', id] as const,
@@ -28,6 +30,17 @@ export const movieQueryOptions = {
     infiniteQueryOptions({
       queryKey: movieQueryKeys.trending(option),
       queryFn: ({ pageParam }) => fetchTrendingMovies(option, pageParam as number),
+      initialPageParam: 1,
+      getNextPageParam: (_, __, lastPageParam) =>
+        (lastPageParam as number) >= MAX_PAGES ? undefined : (lastPageParam as number) + 1,
+      staleTime: STALE_TIME.trending,
+      gcTime: GC_TIME.default,
+    }),
+
+  list: (category: string, option: string) =>
+    infiniteQueryOptions({
+      queryKey: movieQueryKeys.list(category, option),
+      queryFn: ({ pageParam }) => fetchMovieList(category, option, pageParam as number),
       initialPageParam: 1,
       getNextPageParam: (_, __, lastPageParam) =>
         (lastPageParam as number) >= MAX_PAGES ? undefined : (lastPageParam as number) + 1,

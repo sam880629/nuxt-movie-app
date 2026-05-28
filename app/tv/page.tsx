@@ -1,25 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useMovieList } from '@/hooks/useMovies'
-import { useDiscoverMovies } from '@/hooks/useProviders'
-import MovieList from '@/components/MovieList'
+import { useTvList } from '@/hooks/useTv'
+import { useDiscoverTvShows } from '@/hooks/useProviders'
+import TvShowList from '@/components/TvShowList'
 import MovieCardSkeleton from '@/components/MovieStyle/MovieCardSkeleton'
 import CategorySelector from '@/components/CategorySelector'
 import ProviderFilter from '@/components/ProviderFilter'
 
 const SKELETON_COUNT = 8
 
-export default function HomePage() {
+export default function TvPage() {
   const [category, setCategory] = useState('trending')
   const [option, setOption] = useState<'day' | 'week'>('day')
   const [selectedProvider, setSelectedProvider] = useState<number | null>(null)
 
-  const list = useMovieList(category, option)
-  const discover = useDiscoverMovies(selectedProvider ?? 0)
+  const list = useTvList(category, option)
+  const discover = useDiscoverTvShows(selectedProvider ?? 0)
 
   const active = selectedProvider ? discover : list
-  const { movies, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = active as typeof list
+  const { shows, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = active as typeof list
 
   useEffect(() => {
     fetchNextPage()
@@ -45,10 +45,10 @@ export default function HomePage() {
 
   return (
     <>
-      <ProviderFilter type="movie" selectedId={selectedProvider} onSelect={handleProviderSelect} />
+      <ProviderFilter type="tv" selectedId={selectedProvider} onSelect={handleProviderSelect} />
       {!selectedProvider && (
         <CategorySelector
-          type="movie"
+          type="tv"
           category={category}
           option={option}
           onCategoryChange={setCategory}
@@ -62,7 +62,7 @@ export default function HomePage() {
           ))}
         </div>
       ) : (
-        <MovieList movies={movies} />
+        <TvShowList shows={shows} />
       )}
     </>
   )

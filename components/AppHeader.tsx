@@ -1,11 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useRef } from 'react'
+
+const NAV_ITEMS = [
+  { label: '電影', href: '/' },
+  { label: '影集', href: '/tv' },
+]
 
 export default function AppHeader() {
   const router = useRouter()
+  const pathname = usePathname()
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,13 +33,33 @@ export default function AppHeader() {
         src="/image/home_background.jpg"
         alt="background"
       />
-      <div className="flex flex-col gap-10 items-start md:items-center">
+      <div className="flex flex-col gap-6 items-start md:items-center">
         <div className="pt-10 px-5 text-white font-bold relative z-10 flex flex-col gap-3">
           <Link href="/">
             <p className="md:text-center text-3xl">CinemaHub</p>
           </Link>
           <p className="text-lg text-[#efefef] opacity-85">Your Ultimate Movie Destination</p>
         </div>
+
+        <nav className="relative z-10 flex gap-1 bg-black/30 backdrop-blur-sm rounded-full px-1.5 py-1.5">
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-6 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? 'bg-white text-[#211c1e]'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
+
         <div className="px-5 mb-10 text-[#efefef] z-10 w-full md:w-8/12 lg:w-6/12 relative">
           <span className="absolute top-1/2 left-2 translate-y-[-50%] px-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
@@ -47,10 +73,11 @@ export default function AppHeader() {
             </svg>
           </span>
           <input
-            className="textInput border border-[#4e484a] rounded-md h-[50px] bg-[#353132] text-sm md:text-lg pl-8 py-[12px] w-full outline-none text-[#efefef]"
+            className="textInput border border-[#4e484a] rounded-md h-12.5 bg-[#353132] text-sm md:text-lg pl-8 py-[12px] w-full outline-none text-[#efefef]"
             type="text"
             placeholder="Search for movies..."
             onChange={handleInput}
+            suppressHydrationWarning
           />
         </div>
       </div>
